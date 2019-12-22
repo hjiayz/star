@@ -8,6 +8,7 @@ keywords = ["tar", "glob", "xz", "xz2", "zst", "zstd", "gzip", "gz"]
 license = "GPLv3"
 readme = "README.md"
 categories = ["command-line-utilities"]
+repository = "https://github.com/hjiayz/star.git"
 
 [dependencies]
 tar = "0.4.26"
