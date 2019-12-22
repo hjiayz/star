@@ -1,0 +1,18 @@
+[package]
+name = "star"
+version = "0.1.0"
+authors = ["hjiayz <hjiayz@gmail.com>"]
+edition = "2018"
+description = "simple tar archive compression/decompression tool"
+keywords = ["tar", "glob", "xz", "xz2", "zst", "zstd", "gzip", "gz"]
+license = "GPLv3"
+readme = "README.md"
+categories = ["command-line-utilities"]
+
+[dependencies]
+tar = "0.4.26"
+glob = "0.3.0"
+clap = "2.33.0"
+xz2 = { git = "https://github.com/hjiayz/xz2-rs.git" }
+zstd = "0.5.1"
+flate2 = "1.0.13"
