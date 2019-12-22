@@ -1,4 +1,5 @@
-//!
+//! simple tar archive compression/decompression tool
+//! 
 //! # Install
 //!
 //! ```
@@ -7,6 +8,7 @@
 //!
 //! # Example
 //!
+//! ```
 //! star c foo.xz Cargo.toml to foo/
 //!
 //! star c foo.xz from ./**/*.dll to lib/ from ./**/*.exe to bin/
@@ -16,6 +18,7 @@
 //! star x foo.xz
 //!
 //! star x foo.xz bar/
+//! ```
 //! 
 //! # more
 //! 
