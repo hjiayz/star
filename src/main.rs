@@ -1,5 +1,5 @@
 //! simple tar archive compression/decompression tool
-//! 
+//!
 //! # Install
 //!
 //! ```
@@ -19,9 +19,9 @@
 //!
 //! star x foo.xz bar/
 //! ```
-//! 
+//!
 //! # more
-//! 
+//!
 //! star --help
 //!
 
