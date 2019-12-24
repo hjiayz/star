@@ -23,8 +23,8 @@ install:
 script:
   - cargo fmt --all -- --check
   - cargo test
-  - cargo build --release
-  - cargo run -- c $TRAVIS_RUST_VERSION.xz from star star.exe to ./
+  - cargo build -j 1 --release
+  - cargo run --release -- c $TRAVIS_RUST_VERSION.xz from star star.exe to ./
 deploy:
   provider: releases
   # ⋮
