@@ -1,0 +1,30 @@
+language: rust
+dist: trusty
+sudo: true
+
+os:
+  - linux
+  - osx
+  - windows
+
+rust:
+  - stable
+
+install:
+  - rustup component add rustfmt
+  - rustfmt -V
+
+script:
+  - cargo fmt --all -- --check
+  - cargo test
+  - cargo build --release
+  - cargo run -- c $TRAVIS_OS_NAME.xz from star star.exe to ./
+deploy:
+  provider: releases
+  # ⋮
+  edge: true
+  api_key: $GITHUB_TOKEN
+  file: $TRAVIS_OS_NAME.7z
+  skip_cleanup: true
+  on:
+    tags: true
