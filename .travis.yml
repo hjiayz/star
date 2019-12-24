@@ -17,7 +17,7 @@ before_install:
 - |-
     case $TRAVIS_OS_NAME in
       windows)
-        choco upgrade mingw --version=6.4.0 --force
+        choco upgrade mingw --version=6.4.0 --force -y --execution-timeout=0
         ;;
     esac
     
