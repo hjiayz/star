@@ -1,6 +1,12 @@
 language: rust
-dist: trusty
-sudo: true
+rust:
+  - stable
+  - beta
+  - nightly
+jobs:
+  allow_failures:
+    - rust: nightly
+  fast_finish: true
 
 os:
   - linux
@@ -18,13 +24,13 @@ script:
   - cargo fmt --all -- --check
   - cargo test
   - cargo build --release
-  - cargo run -- c $TRAVIS_OS_NAME.xz from star star.exe to ./
+  - cargo run -- c $TRAVIS_RUST_VERSION.xz from star star.exe to ./
 deploy:
   provider: releases
   # ⋮
   edge: true
   api_key: $GITHUB_TOKEN
-  file: $TRAVIS_OS_NAME.7z
+  file: $TRAVIS_RUST_VERSION.7z
   skip_cleanup: true
   on:
     tags: true
