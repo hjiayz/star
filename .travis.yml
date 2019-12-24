@@ -16,7 +16,7 @@ os:
 install:
   - rustup component add rustfmt
   - rustfmt -V
-  - gcc -version
+  - gcc --version
 
 script:
   - cargo fmt --all -- --check
