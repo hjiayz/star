@@ -22,13 +22,13 @@ script:
   - cargo fmt --all -- --check
   - cargo test
   - cargo build -j 1 --release
-  - cargo run --release -- c $TRAVIS_RUST_VERSION.xz from star star.exe to ./
+  - cargo run --release -- c $TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz from star star.exe to ./
 deploy:
   provider: releases
   # ⋮
   edge: true
   api_key: $GITHUB_TOKEN
-  file: $TRAVIS_RUST_VERSION.7z
+  file: $TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.7z
   skip_cleanup: true
   on:
     tags: true
