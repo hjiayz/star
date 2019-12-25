@@ -19,5 +19,7 @@ zstd = "0.5.1"
 flate2 = "1.0.13"
 
 [profile.release]
+opt-level = 'z'
 lto = true
-panic = 'unwind'
+panic = 'abort'
+codegen-units = 1
