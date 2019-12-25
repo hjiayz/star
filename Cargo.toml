@@ -6,7 +6,7 @@ edition = "2018"
 description = "simple tar archive compression/decompression tool"
 keywords = ["tar", "glob", "xz", "zstd", "gzip"]
 license = "GPL-3.0-only"
-readme = "README.md"
+readme = "README.MD"
 categories = ["command-line-utilities"]
 repository = "https://github.com/hjiayz/star.git"
 
