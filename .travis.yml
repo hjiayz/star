@@ -35,8 +35,6 @@ script:
   - cargo run --release -- c star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz from ./**/star ./**/star.exe to "./"
 deploy:
   provider: releases
-  # ⋮
-  edge: true
   api_key: $GITHUB_TOKEN
   file: star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz
   skip_cleanup: true
