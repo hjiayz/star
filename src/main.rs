@@ -207,28 +207,30 @@ fn create(
     let mut from = false;
     let mut to = false;
     for param in append_files {
+        let lowcase = param.to_lowercase();
+        if lowcase == "from" {
+            from = true;
+            continue;
+        }
         if to {
             append(&mut ar, paths.take().unwrap(), Some(param.as_ref()));
             to = false;
             continue;
         }
         if paths.is_some() {
-            let lowcase = param.to_lowercase();
             if lowcase == "to" {
                 to = true;
+                from = false;
                 continue;
             }
-            if lowcase == "from" {
-                from = true;
+            if from {
+                paths = paths.map(|src| {
+                    Box::new(src.chain(glob::glob(param).unwrap()))
+                        as Box<dyn Iterator<Item = Result<PathBuf, glob::GlobError>>>
+                });
                 continue;
             }
             append(&mut ar, paths.take().unwrap(), None);
-        }
-        if from && paths.is_some() {
-            paths = paths.map(|src| {
-                Box::new(src.chain(glob::glob(param).unwrap()))
-                    as Box<dyn Iterator<Item = Result<PathBuf, glob::GlobError>>>
-            });
             continue;
         }
         paths = Some(Box::new(glob::glob(param).unwrap()));
