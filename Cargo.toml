@@ -17,3 +17,7 @@ clap = "2.33.0"
 xz2 = { git = "https://github.com/hjiayz/xz2-rs.git" , version = "0.1.6" }
 zstd = "0.5.1"
 flate2 = "1.0.13"
+
+[profile.release]
+lto = true
+panic = 'unwind'
