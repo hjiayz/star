@@ -14,31 +14,27 @@ os:
   - windows
 
 before_install:
-- |-
+  - |-
     case $TRAVIS_OS_NAME in
       windows)
         choco upgrade mingw --version=6.4.0 --force -y --execution-timeout=0
         ;;
     esac
-    
 
 install:
   - rustup component add rustfmt
   - rustfmt -V
   - gcc --version
 
-
 script:
   - cargo fmt --all -- --check
   - cargo test
   - cargo build -j 1 --release
-  - cargo run --release -- c star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz from ./**/star ./**/star.exe to ./
+  - cargo run --release -- c star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.tar.xz from ./**/star ./**/star.exe to ./
 deploy:
   provider: releases
-  # ⋮
-  edge: true
   api_key: $GITHUB_TOKEN
-  file: star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz
+  file: star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.tar.xz
   skip_cleanup: true
   on:
     tags: true

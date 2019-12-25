@@ -117,18 +117,28 @@ fn append<W: Write>(
     for path in src {
         let path = path.unwrap();
         let mut buf;
-        let mut target = target.unwrap_or(path.as_ref());
+        let mut target = *target.as_ref().unwrap_or(&path.as_ref());
         if target_is_dir(target) {
             buf = target.to_path_buf();
             buf.push(path.file_name().unwrap());
             target = buf.as_path();
         }
         if path.is_dir() {
-            ar.append_dir_all(target, &path).unwrap();
+            ar.append_dir_all(&target, &path).unwrap();
+            println!(
+                "dir {} to {}",
+                path.to_string_lossy(),
+                target.to_string_lossy()
+            );
             continue;
         }
 
-        ar.append_path_with_name(&path, target).unwrap();
+        ar.append_path_with_name(&path, &target).unwrap();
+        println!(
+            "file {} to {}",
+            path.to_string_lossy(),
+            target.to_string_lossy()
+        );
     }
 }
 
@@ -262,6 +272,9 @@ fn extract(format_type: &str, filepath: &Path, dst: &str, compression_only: bool
 
 fn target_is_dir(path: &Path) -> bool {
     let path = path.to_string_lossy().to_string();
+    if path.len() == 0 {
+        return true;
+    }
     if path.ends_with("/") {
         return true;
     }
