@@ -32,7 +32,7 @@ script:
   - cargo fmt --all -- --check
   - cargo test
   - cargo build -j 1 --release
-  - cargo run --release -- c star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz from ./**/star ./**/star.exe to ./
+  - cargo run --release -- c star-$TRAVIS_OS_NAME-$TRAVIS_CPU_ARCH-$TRAVIS_RUST_VERSION.xz from ./**/star ./**/star.exe to "./"
 deploy:
   provider: releases
   # ⋮
