@@ -208,7 +208,7 @@ fn create(
     let mut to = false;
     for param in append_files {
         let lowcase = param.to_lowercase();
-        if lowcase == "from" {
+        if (!from) && (lowcase == "from") {
             from = true;
             continue;
         }
